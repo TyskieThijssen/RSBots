@@ -4,7 +4,7 @@ import org.powerbot.script.Condition;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Npc;
-import scripts.BarbFishNCook.Task;
+import scripts.BarbFishNCook.resources.Task;
 
 import java.util.concurrent.Callable;
 

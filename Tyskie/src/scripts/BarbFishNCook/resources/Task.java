@@ -1,4 +1,4 @@
-package scripts.BarbFishNCook;
+package scripts.BarbFishNCook.resources;
 
 import org.powerbot.script.rt4.ClientAccessor;
 import org.powerbot.script.rt4.ClientContext;

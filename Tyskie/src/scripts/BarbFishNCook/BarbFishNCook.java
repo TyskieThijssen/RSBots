@@ -4,6 +4,8 @@ import org.powerbot.script.PaintListener;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
 import org.powerbot.script.rt4.ClientContext;
+import scripts.BarbFishNCook.resources.MyConstants;
+import scripts.BarbFishNCook.resources.Task;
 import scripts.BarbFishNCook.tasks.*;
 
 import java.awt.*;

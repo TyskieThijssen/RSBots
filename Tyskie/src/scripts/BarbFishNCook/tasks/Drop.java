@@ -3,7 +3,7 @@ package scripts.BarbFishNCook.tasks;
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Item;
-import scripts.BarbFishNCook.Task;
+import scripts.BarbFishNCook.resources.Task;
 
 import java.util.concurrent.Callable;
 import java.util.regex.Pattern;

@@ -3,8 +3,8 @@ package scripts.BarbFishNCook.tasks;
 import org.powerbot.script.Random;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
-import scripts.BarbFishNCook.Task;
-import scripts.BarbFishNCook.Walker;
+import scripts.BarbFishNCook.resources.Task;
+import scripts.BarbFishNCook.resources.Walker;
 
 public class Walk extends Task {
 

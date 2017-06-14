@@ -5,8 +5,8 @@ import org.powerbot.script.Random;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;
 import org.powerbot.script.rt4.Item;
-import scripts.BarbFishNCook.MyConstants;
-import scripts.BarbFishNCook.Task;
+import scripts.BarbFishNCook.resources.MyConstants;
+import scripts.BarbFishNCook.resources.Task;
 
 import java.util.concurrent.Callable;
 
