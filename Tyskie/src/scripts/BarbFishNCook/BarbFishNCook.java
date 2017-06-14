@@ -18,8 +18,8 @@ public class BarbFishNCook extends PollingScript<ClientContext> implements Paint
     @Override
     public void start(){
         taskList.add(new Bank(ctx, MyConstants.FISHING_SUPPLIES_IDS));
-        taskList.add(new Walk(ctx, MyConstants.FIRE_TO_BANK, MyConstants.COOKED_FISH_IDS, MyConstants.RAW_FISH_IDS));
-//        taskList.add(new Fish(ctx, MyConstants.FISHING_SPOT_IDS));
+        taskList.add(new Walk(ctx, MyConstants.FISHING_TO_BANK, MyConstants.COOKED_FISH_IDS, MyConstants.RAW_FISH_IDS));
+        taskList.add(new Fish(ctx, MyConstants.FISHING_SPOT_IDS));
         taskList.add(new Cook(ctx, MyConstants.RAW_FISH_IDS));
 //        taskList.add(new Drop(ctx));
     }

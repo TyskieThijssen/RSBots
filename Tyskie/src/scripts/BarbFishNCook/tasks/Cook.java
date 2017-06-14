@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 public class Cook extends Task {
 
     private int[] rawFoodIds;
+    boolean isCooking = false;
 
     public Cook(ClientContext ctx, int[] rawFoodIds) {
         super(ctx);
@@ -58,16 +59,32 @@ public class Cook extends Task {
                     ctx.widgets.component(307, 2).interact("Cook All");
                 }
 
-                System.out.println(ctx.inventory.select().id(rawFoodId).count());
-
                 Condition.wait(new Callable<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
-                        return ctx.inventory.select().id(rawFoodId).count() == 0;
+                        return ctx.players.local().animation() == 897;
                     }
                 });
 
-                System.out.println(ctx.inventory.select().id(rawFoodId).count());
+                if (ctx.players.local().animation() == 897) {
+                    isCooking = true;
+                }
+
+                while(isCooking) {
+                    if (ctx.widgets.component(233, 2).valid()){
+                        isCooking = false;
+                    }
+                    if (ctx.inventory.select().id(rawFoodId).count() == 0) {
+                        isCooking = !isCooking;
+                    }
+                    Condition.wait(new Callable<Boolean>() {
+                        @Override
+                        public Boolean call() throws Exception {
+                            return ctx.players.local().animation() == -1;
+                        }
+                    });
+                    Condition.sleep(Random.nextInt(50, 150));
+                }
             }
         }
     }
