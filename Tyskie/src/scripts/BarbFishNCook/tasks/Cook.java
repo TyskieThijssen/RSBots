@@ -22,7 +22,9 @@ public class Cook extends Task {
 
     @Override
     public boolean activate() {
-        return ctx.players.local().animation() == -1 && ctx.inventory.select().count() > 27 && ((ctx.inventory.select().id(rawFoodIds[0]).count() > 1) || (ctx.inventory.select().id(rawFoodIds[1]).count() > 1));
+        return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE
+                && ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
+                && ((ctx.inventory.select().id(rawFoodIds[0]).count() > 1) || (ctx.inventory.select().id(rawFoodIds[1]).count() > 1));
     }
 
     @Override
@@ -39,12 +41,15 @@ public class Cook extends Task {
                 GameObject fire = ctx.objects.select().id(MyConstants.FIRE_ID).nearest().poll();
 
                 if (!fire.inViewport()) {
-                    ctx.camera.turnTo(fire);
+                    while(!fire.inViewport()) {
+                        ctx.camera.turnTo(fire);
+                    }
                 }
 
+                fire.doSetBounds(MyConstants.FIRE_BOUNDS);
                 fire.hover();
                 Condition.sleep(Random.nextInt(100, 250));
-                fire.interact(false, "Use");
+                fire.interact(false, "Use", "-> fire");
 
                 Condition.wait(new Callable<Boolean>() {
                     @Override
@@ -62,12 +67,15 @@ public class Cook extends Task {
                 Condition.wait(new Callable<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
-                        return ctx.players.local().animation() == 897;
+                        return ctx.players.local().animation() == MyConstants.ANIMATION_COOKING;
                     }
                 });
 
-                if (ctx.players.local().animation() == 897) {
+                if (ctx.players.local().animation() == MyConstants.ANIMATION_COOKING) {
                     isCooking = true;
+                    if (Random.nextDouble() > 0.3){
+                        hoverOverSkill(rawFoodId);
+                    }
                 }
 
                 while(isCooking) {
@@ -80,10 +88,35 @@ public class Cook extends Task {
                     Condition.wait(new Callable<Boolean>() {
                         @Override
                         public Boolean call() throws Exception {
-                            return ctx.players.local().animation() == -1;
+                            return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
                     });
                     Condition.sleep(Random.nextInt(50, 150));
+                }
+            }
+        }
+    }
+
+    private void hoverOverSkill(final int foodId){
+        if (ctx.widgets.component(548, 48).valid()){
+            ctx.widgets.component(548, 48).hover();
+            Condition.sleep(Random.nextInt(250, 500));
+            ctx.widgets.component(548, 48).click();
+            if (ctx.widgets.component(320, 20).valid()){
+                ctx.widgets.component(320, 20).hover();
+
+                Condition.wait(new Callable<Boolean>() {
+                    @Override
+                    public Boolean call() throws Exception {
+                        return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE
+                                && ctx.inventory.select().id(foodId).count() == 0;
+                    }
+                }, 250, 20);
+
+                if (ctx.widgets.component(548, 50).valid()){
+                    ctx.widgets.component(548, 50).hover();
+                    Condition.sleep(Random.nextInt(250, 500));
+                    ctx.widgets.component(548, 50).click();
                 }
             }
         }

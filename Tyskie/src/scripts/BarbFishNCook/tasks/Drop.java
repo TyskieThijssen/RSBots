@@ -3,6 +3,7 @@ package scripts.BarbFishNCook.tasks;
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Item;
+import scripts.BarbFishNCook.resources.MyConstants;
 import scripts.BarbFishNCook.resources.Task;
 
 import java.util.concurrent.Callable;
@@ -16,7 +17,7 @@ public class Drop extends Task {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().count() > 27;
+        return ctx.inventory.select().count() == MyConstants.INVENTORY_FULL;
     }
 
     @Override
