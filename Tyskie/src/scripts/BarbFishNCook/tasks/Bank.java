@@ -2,7 +2,8 @@ package scripts.BarbFishNCook.tasks;
 
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
-import scripts.BarbFishNCook.Task;
+import scripts.BarbFishNCook.resources.MyConstants;
+import scripts.BarbFishNCook.resources.Task;
 
 import java.util.concurrent.Callable;
 
@@ -17,7 +18,8 @@ public class Bank extends Task {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().count() > 27 && ctx.bank.nearest().tile().distanceTo(ctx.players.local()) < 6;
+        return ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
+                && ctx.bank.nearest().tile().distanceTo(ctx.players.local()) < 6;
     }
 
     @Override
@@ -27,7 +29,9 @@ public class Bank extends Task {
                 Condition.wait(new Callable<Boolean>() {
                     @Override
                     public Boolean call() throws Exception {
-                        return ctx.inventory.select().count() == 2 && ctx.inventory.contains(ctx.inventory.select().id(fishingSupplies[0]).poll()) && ctx.inventory.contains(ctx.inventory.select().id(fishingSupplies[1]).poll());
+                        return ctx.inventory.select().count() == fishingSupplies.length
+                                && ctx.inventory.select().id(fishingSupplies[0]).count() > 1
+                                && ctx.inventory.select().id(fishingSupplies[1]).count() > 1;
                     }
                 }, 250, 20);
             }
@@ -39,7 +43,7 @@ public class Bank extends Task {
                         public Boolean call() throws Exception {
                             return ctx.bank.opened();
                         }
-                    }, 250, 20);
+                    }, 250, 10);
                 }
             } else {
                 ctx.camera.turnTo(ctx.bank.nearest());

@@ -1,4 +1,4 @@
-package scripts.BarbFishNCook;
+package scripts.BarbFishNCook.resources;
 
 import org.powerbot.script.Condition;
 import org.powerbot.script.Random;
