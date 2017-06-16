@@ -24,7 +24,8 @@ public class Cook extends Task {
     public boolean activate() {
         return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE
                 && ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
-                && ((ctx.inventory.select().id(rawFoodIds[0]).count() > 1) || (ctx.inventory.select().id(rawFoodIds[1]).count() > 1));
+                && ((ctx.inventory.select().id(rawFoodIds[0]).count() > 1)
+                    || (ctx.inventory.select().id(rawFoodIds[1]).count() > 1));
     }
 
     @Override

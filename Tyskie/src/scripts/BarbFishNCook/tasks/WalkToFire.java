@@ -12,24 +12,20 @@ public class WalkToFire extends Task {
 
     public Tile[] pathToFire;
     private final Walker walker = new Walker(ctx);
-    private int[] cookedFoodIds;
-    private int[] rawFoodIds;
     private boolean walkedToFire = false;
 
-    public WalkToFire(ClientContext ctx, Tile[] pathToFire, int[] cookedFoodIds, int[] rawFoodIds) {
+    public WalkToFire(ClientContext ctx, Tile[] pathToFire) {
         super(ctx);
         this.pathToFire = pathToFire;
-        this.cookedFoodIds = cookedFoodIds;
-        this.rawFoodIds = rawFoodIds;
     }
 
     @Override
     public boolean activate() {
         return (ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
-                && (ctx.inventory.select().id(rawFoodIds[0]).count() > 1)
-                && (ctx.inventory.select().id(cookedFoodIds[0]).count() == 0)
-                && (ctx.inventory.select().id(rawFoodIds[1]).count() > 1)
-                && (ctx.inventory.select().id(cookedFoodIds[1]).count() == 0))
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[0]).count() > 1)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[0]).count() == 0)
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[1]).count() > 1)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[1]).count() == 0))
                 && !walkedToFire;
     }
 

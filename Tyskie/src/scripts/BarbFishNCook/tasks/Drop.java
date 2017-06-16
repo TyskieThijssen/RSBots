@@ -17,12 +17,16 @@ public class Drop extends Task {
 
     @Override
     public boolean activate() {
-        return ctx.inventory.select().count() == MyConstants.INVENTORY_FULL;
+        return (ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[0]).count() == 0)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[0]).count() > 1)
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[1]).count() == 0)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[1]).count() > 1));
     }
 
     @Override
     public void execute() {
-        for (Item fish : ctx.inventory.select().name(Pattern.compile("(Raw trout)|(Raw salmon)"))) {
+        for (Item fish : ctx.inventory.select().name(Pattern.compile("(Trout)|(Salmon)|(Burnt fish)"))) {
             if(ctx.controller.isStopping()){
                 break;
             }

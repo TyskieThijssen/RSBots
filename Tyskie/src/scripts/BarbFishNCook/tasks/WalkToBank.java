@@ -11,23 +11,19 @@ public class WalkToBank extends Task {
 
     public Tile[] pathToBank;
     private final Walker walker = new Walker(ctx);
-    private int[] cookedFoodIds;
-    private int[] rawFoodIds;
 
-    public WalkToBank(ClientContext ctx, Tile[] pathToBank, int[] cookedFoodIds, int[] rawFoodIds) {
+    public WalkToBank(ClientContext ctx, Tile[] pathToBank) {
         super(ctx);
         this.pathToBank = pathToBank;
-        this.cookedFoodIds = cookedFoodIds;
-        this.rawFoodIds = rawFoodIds;
     }
 
     @Override
     public boolean activate() {
         return (ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
-                && (ctx.inventory.select().id(rawFoodIds[0]).count() == 0)
-                && (ctx.inventory.select().id(cookedFoodIds[0]).count() > 1)
-                && (ctx.inventory.select().id(rawFoodIds[1]).count() == 0)
-                && (ctx.inventory.select().id(cookedFoodIds[1]).count() > 1))
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[0]).count() == 0)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[0]).count() > 1)
+                && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[1]).count() == 0)
+                && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[1]).count() > 1))
                 || (ctx.inventory.select().count() != MyConstants.INVENTORY_FULL
                 && pathToBank[0].distanceTo(ctx.players.local()) > 10);
     }
@@ -42,10 +38,10 @@ public class WalkToBank extends Task {
                 || ctx.movement.destination().equals(Tile.NIL)
                 || ctx.movement.destination().distanceTo(ctx.players.local()) < 5){
             if(ctx.inventory.select().count() == MyConstants.INVENTORY_FULL
-                    && (ctx.inventory.select().id(rawFoodIds[0]).count() == 0)
-                    && (ctx.inventory.select().id(cookedFoodIds[0]).count() > 1)
-                    && (ctx.inventory.select().id(rawFoodIds[1]).count() == 0)
-                    && (ctx.inventory.select().id(cookedFoodIds[1]).count() > 1)) {
+                    && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[0]).count() == 0)
+                    && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[0]).count() > 1)
+                    && (ctx.inventory.select().id(MyConstants.RAW_FISH_IDS[1]).count() == 0)
+                    && (ctx.inventory.select().id(MyConstants.COOKED_FISH_IDS[1]).count() > 1)) {
                 walker.walkPath(pathToBank);
             } else {
                 walker.walkPathReverse(pathToBank);
