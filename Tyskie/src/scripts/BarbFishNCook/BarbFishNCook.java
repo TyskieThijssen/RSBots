@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Script.Manifest(name="BarbFishNCook", description = "Tyskie's BarbFishNCook fishes trout/salmon at Barbarian Village and cooks them on the infinite fire.", properties = "author=Tyskie; topic=999; client=4;")
+@Script.Manifest(name="Tyskie's BarbFishNCook", description = "Tyskie's BarbFishNCook fishes trout/salmon at Barbarian Village and cooks them on the infinite fire. It supports banking/dropping.", properties = "author=Tyskie; topic=1334294; client=4;")
 public class BarbFishNCook extends PollingScript<ClientContext> implements PaintListener {
 
     List<Task> taskList = new ArrayList<Task>();
