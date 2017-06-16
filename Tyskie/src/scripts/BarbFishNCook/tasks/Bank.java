@@ -43,7 +43,7 @@ public class Bank extends Task {
                         public Boolean call() throws Exception {
                             return ctx.bank.opened();
                         }
-                    }, 250, 20);
+                    }, 250, 10);
                 }
             } else {
                 ctx.camera.turnTo(ctx.bank.nearest());

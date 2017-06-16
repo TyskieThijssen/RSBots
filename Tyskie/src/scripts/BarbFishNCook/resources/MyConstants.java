@@ -51,6 +51,12 @@ public class MyConstants {
     public static final int INVENTORY_FULL = 28;
 
     /**
+     * Widget skills ID's
+     */
+    public static final int SKILL_FISHING = 19;
+    public static final int SKILL_COOKING = 20;
+
+    /**
      * Paths
      */
     //fishing spot to bank

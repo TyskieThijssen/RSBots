@@ -5,6 +5,7 @@ import org.powerbot.script.Random;
 import org.powerbot.script.Tile;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Npc;
+import scripts.BarbFishNCook.resources.Antiban;
 import scripts.BarbFishNCook.resources.MyConstants;
 import scripts.BarbFishNCook.resources.Task;
 
@@ -12,13 +13,14 @@ import java.util.concurrent.Callable;
 
 public class Fish extends Task {
 
-    int[] fishIds;
-
-    Tile fishingSpotLocation = Tile.NIL;
+    private int[] fishIds;
+    private Tile fishingSpotLocation = Tile.NIL;
+    private Antiban antiban;
 
     public Fish(ClientContext ctx, int[] fishIds) {
         super(ctx);
         this.fishIds = fishIds;
+        antiban = new Antiban();
     }
 
     @Override
@@ -49,41 +51,16 @@ public class Fish extends Task {
             }
         }, 250, 20);
 
-        if (Random.nextDouble() > 0.3) {
-            System.out.println("hover skill");
-            hoverOverSkill();
-        } else {
-            System.out.println("not hover skill");
-            Condition.wait(new Callable<Boolean>() {
-                @Override
-                public Boolean call() throws Exception {
-                    return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
-                }
-            }, 250, 20);
-        }
-    }
+        boolean isFishing = true;
 
-    private void hoverOverSkill(){
-        if (ctx.widgets.component(548, 48).valid()){
-            ctx.widgets.component(548, 48).hover();
-            Condition.sleep(Random.nextInt(250, 500));
-            ctx.widgets.component(548, 48).click();
-            if (ctx.widgets.component(320, 19).valid()){
-                ctx.widgets.component(320, 19).hover();
-
-                Condition.wait(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        return ctx.players.local().animation() != MyConstants.ANIMATION_FISHING;
-                    }
-                }, 250, 20);
-
-                if (ctx.widgets.component(548, 50).valid()){
-                    ctx.widgets.component(548, 50).hover();
-                    Condition.sleep(Random.nextInt(250, 500));
-                    ctx.widgets.component(548, 50).click();
-                }
+        while (isFishing){
+            if (ctx.players.local().animation() == MyConstants.ANIMATION_IDLE){
+                isFishing = !isFishing;
             }
+            if (Random.nextDouble() > 0.75){
+                antiban.doAntibanAction(Random.nextInt(1, 10));
+            }
+            Condition.sleep(Random.nextInt(5000, 10000));
         }
     }
 }

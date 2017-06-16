@@ -5,6 +5,7 @@ import org.powerbot.script.Random;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.GameObject;
 import org.powerbot.script.rt4.Item;
+import scripts.BarbFishNCook.resources.Antiban;
 import scripts.BarbFishNCook.resources.MyConstants;
 import scripts.BarbFishNCook.resources.Task;
 
@@ -13,11 +14,13 @@ import java.util.concurrent.Callable;
 public class Cook extends Task {
 
     private int[] rawFoodIds;
-    boolean isCooking = false;
+    private boolean isCooking = false;
+    private Antiban antiban;
 
     public Cook(ClientContext ctx, int[] rawFoodIds) {
         super(ctx);
         this.rawFoodIds = rawFoodIds;
+        antiban = new Antiban();
     }
 
     @Override
@@ -74,12 +77,16 @@ public class Cook extends Task {
 
                 if (ctx.players.local().animation() == MyConstants.ANIMATION_COOKING) {
                     isCooking = true;
-                    if (Random.nextDouble() > 0.3){
-                        hoverOverSkill(rawFoodId);
+                    if (Random.nextDouble() > 0.75){
+                        antiban.doAntibanAction(Random.nextInt(1, 10));
                     }
                 }
 
                 while(isCooking) {
+                    if (Random.nextDouble() > 0.75){
+                        antiban.doAntibanAction(Random.nextInt(1, 10));
+                    }
+
                     if (ctx.widgets.component(233, 2).valid()){
                         isCooking = false;
                     }
@@ -92,35 +99,9 @@ public class Cook extends Task {
                             return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
                     });
-                    Condition.sleep(Random.nextInt(50, 150));
+                    Condition.sleep(Random.nextInt(1000, 3000));
                 }
             }
         }
     }
-
-    private void hoverOverSkill(final int foodId){
-        if (ctx.widgets.component(548, 48).valid()){
-            ctx.widgets.component(548, 48).hover();
-            Condition.sleep(Random.nextInt(250, 500));
-            ctx.widgets.component(548, 48).click();
-            if (ctx.widgets.component(320, 20).valid()){
-                ctx.widgets.component(320, 20).hover();
-
-                Condition.wait(new Callable<Boolean>() {
-                    @Override
-                    public Boolean call() throws Exception {
-                        return ctx.players.local().animation() == MyConstants.ANIMATION_IDLE
-                                && ctx.inventory.select().id(foodId).count() == 0;
-                    }
-                }, 250, 20);
-
-                if (ctx.widgets.component(548, 50).valid()){
-                    ctx.widgets.component(548, 50).hover();
-                    Condition.sleep(Random.nextInt(250, 500));
-                    ctx.widgets.component(548, 50).click();
-                }
-            }
-        }
-    }
-
 }
