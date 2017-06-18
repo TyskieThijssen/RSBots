@@ -1,9 +1,9 @@
-package scripts.tasks;
+package scripts.TSuperHeat.tasks;
 
 import org.powerbot.script.Condition;
 import org.powerbot.script.rt4.ClientContext;
-import scripts.resources.MyConstants;
-import scripts.resources.Task;
+import scripts.TSuperHeat.resources.MyConstants;
+import scripts.TSuperHeat.resources.Task;
 
 import java.util.concurrent.Callable;
 

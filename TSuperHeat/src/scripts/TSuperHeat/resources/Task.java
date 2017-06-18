@@ -1,4 +1,4 @@
-package scripts.resources;
+package scripts.TSuperHeat.resources;
 
 import org.powerbot.script.rt4.ClientAccessor;
 import org.powerbot.script.rt4.ClientContext;

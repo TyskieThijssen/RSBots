@@ -1,4 +1,4 @@
-package scripts.resources;
+package scripts.TSuperHeat.resources;
 
 /**
  * Created by Tyskie on 17-6-2017.

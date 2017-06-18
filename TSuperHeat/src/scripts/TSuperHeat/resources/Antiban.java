@@ -1,9 +1,9 @@
-package scripts.resources;
+package scripts.TSuperHeat.resources;
 
 import org.powerbot.script.Condition;
 import org.powerbot.script.Random;
 import org.powerbot.script.rt4.Player;
-import scripts.TSuperHeat;
+import scripts.TSuperHeat.TSuperHeat;
 
 import java.awt.*;
 

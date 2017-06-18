@@ -1,14 +1,14 @@
-package scripts;
+package scripts.TSuperHeat;
 
 import org.powerbot.script.PaintListener;
 import org.powerbot.script.PollingScript;
 import org.powerbot.script.Script;
 import org.powerbot.script.rt4.ClientContext;
 import org.powerbot.script.rt4.Constants;
-import scripts.resources.MyConstants;
-import scripts.resources.Task;
-import scripts.tasks.Bank;
-import scripts.tasks.Superheat;
+import scripts.TSuperHeat.resources.MyConstants;
+import scripts.TSuperHeat.resources.Task;
+import scripts.TSuperHeat.tasks.Bank;
+import scripts.TSuperHeat.tasks.Superheat;
 
 import javax.swing.*;
 import java.awt.*;
