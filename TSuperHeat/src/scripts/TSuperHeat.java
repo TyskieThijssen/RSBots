@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Tyskie on 17-6-2017.
  */
-@Script.Manifest(name="Tyskie's TSuperHeat", description = "Tyskie's TSuperHeat superheats ores into bars.", properties = "author=Tyskie; topic=999; client=4")
+@Script.Manifest(name="Tyskie's TSuperHeat", description = "Tyskie's TSuperHeat superheats ores into bars.", properties = "author=Tyskie; topic=1334360; client=4")
 public class TSuperHeat extends PollingScript<ClientContext> implements PaintListener {
 
     private List<Task> taskList = new ArrayList<Task>();
