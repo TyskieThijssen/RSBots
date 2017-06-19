@@ -82,8 +82,8 @@ public class TSuperHeat extends PollingScript<ClientContext> implements PaintLis
         System.out.println("Runned for: " + getRunningTime());
         magicExpGained = ctx.skills.experience(Constants.SKILLS_MAGIC) - magicStartExp;
         smithingExpGained = ctx.skills.experience(Constants.SKILLS_SMITHING) - smithingStartExp;
-        System.out.println("Magic Exp gained: " + magicExpGained);
-        System.out.println("Smithing Exp gained: " + smithingExpGained);
+        System.out.println("Magic Exp Gained: " + magicExpGained);
+        System.out.println("Smithing Exp Gained: " + smithingExpGained);
     }
 
     @Override
