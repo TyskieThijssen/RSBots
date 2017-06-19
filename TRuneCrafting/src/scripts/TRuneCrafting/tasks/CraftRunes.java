@@ -160,9 +160,9 @@ public class CraftRunes extends Task {
             Condition.wait(new Callable<Boolean>() {
                 @Override
                 public Boolean call() throws Exception {
-                    return !portal.inViewport();
+                    return !portal.valid() && !portal.inViewport();
                 }
-            }, 250, 20);
+            }, 500, 20);
         } else {
             ctx.camera.turnTo(portal);
             Condition.wait(new Callable<Boolean>() {

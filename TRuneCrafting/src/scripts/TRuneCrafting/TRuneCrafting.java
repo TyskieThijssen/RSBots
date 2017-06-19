@@ -28,7 +28,7 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
     @Override
     public void start(){
         String essenceOptions[] = {"Rune essence", "Pure essence"};
-        String essenceChoice = "" + JOptionPane.showInputDialog(null, "Select the runes you want to make.", "TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, essenceOptions, essenceOptions[0]);
+        String essenceChoice = "" + JOptionPane.showInputDialog(null, "Select the essence you want to use.", "TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, essenceOptions, essenceOptions[0]);
 
         String runesOptions[] = {"Air runes", "Mind runes", "Water runes", "Earth runes", "Fire runes", "Body runes"};
         String runesChoice = "" + JOptionPane.showInputDialog(null, "Select the runes you want to make.", "TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, runesOptions, runesOptions[0]);
@@ -62,6 +62,13 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
             portalId = MyConstants.WATER_PORTAL_ID;
             pathToRuins = MyConstants.LUMBRIDGE_BANK_WATER_ALTAR;
             pathToAltar = MyConstants.WATER_PORTAL_TO_ALTAR;
+        } else if (runesChoice.equals("Earth runes")){
+            runeId = MyConstants.EARTH_RUNE;
+            ruinsId = MyConstants.EARTH_MYSTERIOUS_RUINS_ID;
+            altarId = MyConstants.EARTH_ALTAR_ID;
+            portalId = MyConstants.EARTH_PORTAL_ID;
+            pathToRuins = MyConstants.VARROCK_BANK_EARTH_ALTAR;
+            pathToAltar = MyConstants.EARTH_PORTAL_TO_ALTAR;
         }
 
         taskList.add(new CraftRunes(ctx, essenceId, runeId, ruinsId, altarId, portalId, pathToAltar));
