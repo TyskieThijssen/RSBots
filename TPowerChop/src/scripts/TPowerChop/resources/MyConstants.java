@@ -14,9 +14,7 @@ public class MyConstants {
      */
     public static final int TREE_ID = 1276;
     public static final int OAK_ID = 1751;
-    public static final int WILLOW_ID = 1;
-    public static final int TEAK_ID = 1;
-    public static final int MAPLE_ID = 1;
+    public static final int WILLOW_ID = 1756;
 
     /**
      * Exp Each Log
@@ -24,8 +22,6 @@ public class MyConstants {
     public static final double TREE_EXP = 25;
     public static final double OAK_EXP = 37.5;
     public static final double WILLOW_EXP = 67.5;
-    public static final double TEAK_EXP = 85;
-    public static final double MAPLE_EXP = 100;
 
     /**
      * Animation ID's

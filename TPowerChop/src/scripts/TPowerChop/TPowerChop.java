@@ -39,6 +39,12 @@ public class TPowerChop extends PollingScript<ClientContext> implements PaintLis
             treeId = MyConstants.OAK_ID;
             expEachLog = MyConstants.OAK_EXP;
             interact = "Oak";
+        } else if (userChoice.equals("Willow logs")){
+            treeId = MyConstants.WILLOW_ID;
+            expEachLog = MyConstants.WILLOW_EXP;
+            interact = "Willow";
+        } else {
+            ctx.controller.stop();
         }
 
         taskList.add(new Drop(ctx));
