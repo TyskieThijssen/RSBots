@@ -94,8 +94,8 @@ public class CraftRunes extends Task {
                         public Boolean call() throws Exception {
                             return altar.valid() && altar.inViewport() && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
-                    }, 250, 10);
-                    Condition.sleep(Random.nextInt(250, 20));
+                    }, 250, 20);
+                    Condition.sleep(Random.nextInt(2000, 2500));
                 }
             }
         }
@@ -149,7 +149,7 @@ public class CraftRunes extends Task {
                             return portal.valid() && portal.inViewport() && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
                     }, 250, 20);
-                    Condition.sleep(Random.nextInt(1500, 2000));
+                    Condition.sleep(Random.nextInt(2000, 2500));
                 }
             }
     }

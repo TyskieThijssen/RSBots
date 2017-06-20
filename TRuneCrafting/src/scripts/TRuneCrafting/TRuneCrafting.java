@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Tyskie on 18-6-2017.
  */
-@Script.Manifest(name="Tyskie's TRuneCrafting", description = "Tyskie's TRuneCrafting crafts your selected runes.", properties = "author=Tyskie; topic=999; client=4")
+@Script.Manifest(name="Tyskie's AIO TRuneCrafting", description = "Tyskie's TRuneCrafting crafts your selected runes.", properties = "author=Tyskie; topic=999; client=4")
 public class TRuneCrafting extends PollingScript<ClientContext> implements PaintListener {
 
     private List<Task> taskList = new ArrayList<Task>();
@@ -28,10 +28,10 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
     @Override
     public void start(){
         String essenceOptions[] = {"Rune essence", "Pure essence"};
-        String essenceChoice = "" + JOptionPane.showInputDialog(null, "Select the essence you want to use.", "TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, essenceOptions, essenceOptions[0]);
+        String essenceChoice = "" + JOptionPane.showInputDialog(null, "Select the essence you want to use.", "AIO TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, essenceOptions, essenceOptions[0]);
 
         String runesOptions[] = {"Air runes", "Mind runes", "Water runes", "Earth runes", "Fire runes", "Body runes"};
-        String runesChoice = "" + JOptionPane.showInputDialog(null, "Select the runes you want to make.", "TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, runesOptions, runesOptions[0]);
+        String runesChoice = "" + JOptionPane.showInputDialog(null, "Select the runes you want to make.", "AIO TRuneCrafting", JOptionPane.PLAIN_MESSAGE, null, runesOptions, runesOptions[0]);
 
         if (essenceOptions.equals("Rune essence")){
             essenceId = MyConstants.RUNE_ESSENCE;
@@ -102,7 +102,6 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
             }
 
             if (task.activate()){
-                System.out.println("Task: " + task.toString());
                 task.execute();
                 break;
             }
@@ -111,7 +110,7 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
 
     @Override
     public void stop(){
-        System.out.println("Thanks for using Tyskie's TRuneCrafting!");
+        System.out.println("Thanks for using Tyskie's AIO TRuneCrafting!");
         System.out.println("Runned For: " + getRunningTime());
         expGained = ctx.skills.experience(Constants.SKILLS_RUNECRAFTING) - startExp;
         System.out.println("Runecrafting Exp Gained: " + expGained);
@@ -129,7 +128,7 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
         g.setColor(new Color(255, 255, 255));
         g.drawRect(5, 246, 200, 90);
 
-        g.drawString("Tyskie's TRuneCrafting", 10, 266);
+        g.drawString("Tyskie's AIO TRuneCrafting", 10, 266);
         g.drawString("Running For: " + getRunningTime(), 10, 296);
         g.drawString("Runecrafting Exp Gained: " + expGained, 10, 326);
     }
