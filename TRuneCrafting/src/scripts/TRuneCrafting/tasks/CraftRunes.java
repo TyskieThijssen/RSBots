@@ -95,7 +95,7 @@ public class CraftRunes extends Task {
                             return altar.valid() && altar.inViewport() && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
                     }, 250, 10);
-                    Condition.sleep(Random.nextInt(250, 500));
+                    Condition.sleep(Random.nextInt(250, 20));
                 }
             }
         }
@@ -115,7 +115,7 @@ public class CraftRunes extends Task {
                             && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                 }
             }, 250, 10);
-            Condition.sleep(Random.nextInt(1000, 1500));
+            Condition.sleep(Random.nextInt(2000, 2500));
         } else {
             ctx.camera.turnTo(altar);
             Condition.wait(new Callable<Boolean>() {
@@ -138,13 +138,18 @@ public class CraftRunes extends Task {
                     || ctx.movement.destination().distanceTo(ctx.players.local()) < 5) {
                 if (ctx.inventory.select().count() == MyConstants.INVENTORY_ONLY_RUNES
                         && ctx.inventory.select().id(runeId).count() == 1) {
-                    walker.walkPathReverse(pathToAltar);
+                    if (runeId != MyConstants.BODY_RUNE) {
+                        walker.walkPathReverse(pathToAltar);
+                    } else {
+                        walker.walkPath(MyConstants.BODY_PATH_PORTAL);
+                    }
                     Condition.wait(new Callable<Boolean>() {
                         @Override
                         public Boolean call() throws Exception {
                             return portal.valid() && portal.inViewport() && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
                     }, 250, 20);
+                    Condition.sleep(Random.nextInt(1500, 2000));
                 }
             }
     }

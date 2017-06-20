@@ -69,6 +69,22 @@ public class TRuneCrafting extends PollingScript<ClientContext> implements Paint
             portalId = MyConstants.EARTH_PORTAL_ID;
             pathToRuins = MyConstants.VARROCK_BANK_EARTH_ALTAR;
             pathToAltar = MyConstants.EARTH_PORTAL_TO_ALTAR;
+        } else if (runesChoice.equals("Fire runes")){
+            runeId = MyConstants.FIRE_RUNE;
+            ruinsId = MyConstants.FIRE_MYSTERIOUS_RUINS_ID;
+            altarId = MyConstants.FIRE_ALTAR_ID;
+            portalId = MyConstants.FIRE_PORTAL_ID;
+            pathToRuins = MyConstants.ALKHARID_BANK_FIRE_ALTAR;
+            pathToAltar = MyConstants.FIRE_PORTAL_TO_ALTAR;
+        } else if (runesChoice.equals("Body runes")){
+            runeId = MyConstants.BODY_RUNE;
+            ruinsId = MyConstants.BODY_MYSTERIOUS_RUINS_ID;
+            altarId = MyConstants.BODY_ALTAR_ID;
+            portalId = MyConstants.BODY_PORTAL_ID;
+            pathToRuins = MyConstants.EDGEVILLE_BANK_BODY_ALTAR;
+            pathToAltar = MyConstants.BODY_PATH_ALTAR;
+        } else {
+            ctx.controller.stop();
         }
 
         taskList.add(new CraftRunes(ctx, essenceId, runeId, ruinsId, altarId, portalId, pathToAltar));
