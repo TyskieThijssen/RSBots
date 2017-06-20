@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Tyskie on 18-6-2017.
  */
-@Script.Manifest(name="Tyskie's AIO TRuneCrafting", description = "Tyskie's TRuneCrafting crafts your selected runes.", properties = "author=Tyskie; topic=999; client=4")
+@Script.Manifest(name="Tyskie's AIO TRuneCrafting", description = "Tyskie's TRuneCrafting crafts your selected runes.", properties = "author=Tyskie; topic=1334445; client=4")
 public class TRuneCrafting extends PollingScript<ClientContext> implements PaintListener {
 
     private List<Task> taskList = new ArrayList<Task>();
