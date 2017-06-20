@@ -129,7 +129,6 @@ public class CraftRunes extends Task {
 
     private void walkToPortal(){
         final GameObject portal = ctx.objects.select().id(portalId).nearest().poll();
-        if (!portal.inViewport()) {
             if (!ctx.movement.running()
                     && ctx.movement.energyLevel() > Random.nextInt(20, 35)) {
                 ctx.movement.running(true);
@@ -145,32 +144,21 @@ public class CraftRunes extends Task {
                         public Boolean call() throws Exception {
                             return portal.valid() && portal.inViewport() && ctx.players.local().animation() == MyConstants.ANIMATION_IDLE;
                         }
-                    }, 250, 10);
+                    }, 250, 20);
                 }
             }
-        }
     }
 
     private void leaveRuins(){
         final GameObject portal = ctx.objects.select().id(portalId).nearest().poll();
-        if (portal.inViewport() && portal.valid()){
-            portal.hover();
-            Condition.sleep(Random.nextInt(500, 1000));
-            portal.interact("Use", "Portal");
-            Condition.wait(new Callable<Boolean>() {
-                @Override
-                public Boolean call() throws Exception {
-                    return !portal.valid() && !portal.inViewport();
-                }
-            }, 500, 20);
-        } else {
-            ctx.camera.turnTo(portal);
-            Condition.wait(new Callable<Boolean>() {
-                @Override
-                public Boolean call() throws Exception {
-                    return portal.inViewport();
-                }
-            }, 250, 10);
-        }
+        portal.hover();
+        Condition.sleep(Random.nextInt(500, 1000));
+        portal.interact("Use", "Portal");
+        Condition.wait(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return !portal.inViewport();
+            }
+        }, 250, 20);
     }
 }
